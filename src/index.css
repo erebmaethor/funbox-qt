@@ -1,0 +1,38 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.root {
+  height: 100%;
+  width: 100%;
+}
+
+.ymap-class {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  background: #98FB98;
+}
+
+.pointslist {
+  position: absolute;
+  z-index: 10;
+  top: 30px;
+  left: 30px;
+  background: #FFFFE0;
+  border-radius: 5px;
+  padding: 7px;
+}
