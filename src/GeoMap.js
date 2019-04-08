@@ -2,6 +2,7 @@ import React from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 import PointsList from './PointsList';
+import RouteLine from './RouteLine';
 
 export default function GeoMap(props) {
   return (
@@ -15,6 +16,7 @@ export default function GeoMap(props) {
         {props.data.pList.map((pnt, i) => {
           return <Placemark geometry={pnt.coords} key={i} />;
         })}
+        <RouteLine data={props.data} />
       </Map>
     </YMaps>
   );
