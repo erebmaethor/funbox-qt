@@ -1,17 +1,37 @@
 import React, { Component } from 'react';
-//import './App.css';
-import { YMaps, Map } from 'react-yandex-maps';
+import GeoMap from './GeoMap';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      pList: [], // points list, { name,  coords: [lat, lon], }
+    };
+  }
+
+  handleAddPoint = event => {
+    event.preventDefault();
+
+    // check the name
+    let name = event.target.point.value;
+    if (name.search(/^[a-zA-Zа-яА-ЯёЁ0-9 '-_]+$/) === -1) return;
+
+    // add new point
+    let newPList = this.state.pList.slice();
+    newPList.push({ name: name, coords: this.state.map.getCenter() });
+    this.setState({ pList: newPList });
+
+    //console.log(this.state.map.getCenter());
+  };
+
+  returnMap = map => {
+    this.setState({ map });
+  };
+
   render() {
     return (
-      <YMaps>
-        <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} className="ymap-class">
-          <div className="pointslist">
-            First point <br /> Second point{' '}
-          </div>
-        </Map>
-      </YMaps>
+      <GeoMap data={this.state} handleAddPoint={this.handleAddPoint} returnMap={this.returnMap} />
     );
   }
 }

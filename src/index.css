@@ -36,3 +36,8 @@ body {
   border-radius: 5px;
   padding: 7px;
 }
+
+.point {
+  margin: 2px;
+  padding: 2px;
+}
