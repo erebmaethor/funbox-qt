@@ -11,6 +11,8 @@ export default function GeoMap(props) {
         defaultState={{ center: [56.64, 47.87], zoom: 12 }}
         className="ymap-class"
         instanceRef={props.returnMap}
+        onLoad={props.returnYmaps}
+        modules={['geocode']}
       >
         <PointsList
           data={props.data}
