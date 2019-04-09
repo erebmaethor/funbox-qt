@@ -25,13 +25,24 @@ class App extends Component {
     //console.log(this.state.map.getCenter());
   };
 
+  handleDeletePoint = event => {
+    let newPList = this.state.pList.slice();
+    newPList.splice(event.target.dataset.i, 1);
+    this.setState({ pList: newPList });
+  };
+
   returnMap = map => {
     this.setState({ map });
   };
 
   render() {
     return (
-      <GeoMap data={this.state} handleAddPoint={this.handleAddPoint} returnMap={this.returnMap} />
+      <GeoMap
+        data={this.state}
+        handleAddPoint={this.handleAddPoint}
+        returnMap={this.returnMap}
+        handleDeletePoint={this.handleDeletePoint}
+      />
     );
   }
 }

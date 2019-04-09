@@ -24,7 +24,6 @@ body {
   position: relative;
   width: 100%;
   min-height: 100%;
-  background: #98FB98;
 }
 
 .pointslist {
@@ -40,4 +39,16 @@ body {
 .point {
   margin: 2px;
   padding: 2px;
+  border-radius: 5px;
+}
+
+.point:hover {
+  background: #FFFACD;
+}
+
+.del-button {
+  padding: 0px;
+  border-radius: 2px;
+  position: absolute;
+  right: 15px;
 }

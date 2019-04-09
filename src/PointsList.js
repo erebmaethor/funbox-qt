@@ -2,7 +2,7 @@ import React from 'react';
 
 import Point from './Point';
 
-export default function PointsList({ data, handleAddPoint }) {
+export default function PointsList({ data, handleAddPoint, handleDeletePoint }) {
   // prepare list of points
   return (
     <div className="pointslist">
@@ -11,8 +11,8 @@ export default function PointsList({ data, handleAddPoint }) {
         <button style={{ borderRadius: '2px' }}>New point</button>
       </form>
       {data.pList.map((pnt, i) => {
-        pnt.i = ++i;
-        return <Point data={pnt} key={i} />;
+        pnt.i = i;
+        return <Point data={pnt} key={i} handleDeletePoint={handleDeletePoint} />;
       })}
     </div>
   );

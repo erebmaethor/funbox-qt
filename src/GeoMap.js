@@ -12,9 +12,20 @@ export default function GeoMap(props) {
         className="ymap-class"
         instanceRef={props.returnMap}
       >
-        <PointsList data={props.data} handleAddPoint={props.handleAddPoint} />
+        <PointsList
+          data={props.data}
+          handleAddPoint={props.handleAddPoint}
+          handleDeletePoint={props.handleDeletePoint}
+        />
         {props.data.pList.map((pnt, i) => {
-          return <Placemark geometry={pnt.coords} key={i} />;
+          return (
+            <Placemark
+              geometry={pnt.coords}
+              properties={{ balloonContent: `<span>${pnt.name}</span>` }}
+              modules={['geoObject.addon.balloon']}
+              key={i}
+            />
+          );
         })}
         <RouteLine data={props.data} />
       </Map>
