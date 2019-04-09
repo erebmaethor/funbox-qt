@@ -1,9 +1,9 @@
 import React from 'react';
+import { SortableContainer } from 'react-sortable-hoc';
 
 import Point from './Point';
 
-export default function PointsList({ data, handleAddPoint, handleDeletePoint }) {
-  // prepare list of points
+const PointsList = SortableContainer(({ data, handleAddPoint, handleDeletePoint }) => {
   return (
     <div className="pointslist">
       <form name="newPoint" onSubmit={handleAddPoint}>
@@ -12,8 +12,10 @@ export default function PointsList({ data, handleAddPoint, handleDeletePoint }) 
       </form>
       {data.pList.map((pnt, i) => {
         pnt.i = i;
-        return <Point data={pnt} key={i} handleDeletePoint={handleDeletePoint} />;
+        return <Point data={pnt} key={i} index={i} handleDeletePoint={handleDeletePoint} />;
       })}
     </div>
   );
-}
+});
+
+export default PointsList;

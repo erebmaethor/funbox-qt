@@ -60,6 +60,15 @@ class App extends Component {
     this.setState({ pList: newPList });
   };
 
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    let newPList = this.state.pList.slice();
+    const removed = newPList.splice(oldIndex, 1);
+    newPList.splice(newIndex, 0, removed[0]);
+    this.setState({ pList: newPList });
+
+    //console.log(oldIndex, newIndex, this.state.pList, newPList);
+  };
+
   render() {
     return (
       <GeoMap
@@ -68,6 +77,7 @@ class App extends Component {
         returnMap={this.returnMap}
         returnYmaps={this.returnYmaps}
         handleDeletePoint={this.handleDeletePoint}
+        onSortEnd={this.onSortEnd}
       />
     );
   }

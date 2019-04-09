@@ -18,6 +18,7 @@ export default function GeoMap(props) {
           data={props.data}
           handleAddPoint={props.handleAddPoint}
           handleDeletePoint={props.handleDeletePoint}
+          onSortEnd={props.onSortEnd}
         />
         {props.data.pList.map((pnt, i) => {
           return (

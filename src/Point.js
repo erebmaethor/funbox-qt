@@ -1,6 +1,7 @@
 import React from 'react';
+import { SortableElement } from 'react-sortable-hoc';
 
-export default function Point({ data, handleDeletePoint }) {
+const Point = SortableElement(({ data, handleDeletePoint }) => {
   return (
     <div className="point">
       <p style={{ margin: '0px', padding: '0px' }}>
@@ -14,4 +15,6 @@ export default function Point({ data, handleDeletePoint }) {
       ) : null}
     </div>
   );
-}
+});
+
+export default Point;
