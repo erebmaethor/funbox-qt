@@ -1,5 +1,7 @@
 This is the solution of a practical part of the qualification test for javascript developer vacancy in FunBox.
 
+Production build deployed to [https://smallmis.herokuapp.com/funbox/](https://smallmis.herokuapp.com/funbox/).
+
 Created by Mikhail Smolin.
 
 Answers to Level1 questions are in the [Level1.md](Level1.md) file.
