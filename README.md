@@ -1,4 +1,4 @@
-This is the solution of a practical part of the qualification test for javascript developer vacancy in FunBox.
+This is the solution of a practical part of the [qualification test](https://dl.funbox.ru/qt-js.pdf) for javascript developer vacancy in FunBox.
 
 Production build deployed to https://smallmis.herokuapp.com/funbox/
 
@@ -10,7 +10,7 @@ Answers to Level1 questions are in the [Level1.md](Level1.md) file.
 1. clone this repository
 2. cd into repo directory ```$ cd funbox-qt``` 
 3. install the dependencies by, for example, ```$ npm i``` if you use npm
-4. change "homepage" property in package.json if you want to deploy not to root
+4. change "homepage" property in package.json
 5. build a production bundle ```$ npm run build```
 6. organize access to static bundle (that is in ```/build``` directory) with your favorite web server
 7. enjoy!
