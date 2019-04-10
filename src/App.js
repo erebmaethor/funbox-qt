@@ -22,6 +22,26 @@ class App extends Component {
     this.setState({ ymaps });
   };
 
+  _geocoder = async (uniqId, coords) => {
+    try {
+      // obtain an address by geocoder
+      const addrObj = await this.state.ymaps.geocode(coords, { results: 1 });
+      const addr = addrObj.geoObjects.get(0).getAddressLine();
+
+      // insert the address into pList, if this point wasn't deleted while geocoder works
+      const newPList = this.state.pList.map(pnt => {
+        if (pnt.uniqId === uniqId) {
+          pnt.addr = addr;
+        }
+        return pnt;
+      });
+      this.setState({ pList: newPList });
+    } catch (e) {
+      // ideally there should be an action for logging and monitoring errors
+      // but now we simply do nothing and don't show the address
+    }
+  };
+
   handleAddPoint = async event => {
     event.preventDefault();
 
@@ -40,18 +60,8 @@ class App extends Component {
     newPList.push({ name: name, coords: coords, uniqId: uniqId });
     this.setState({ pList: newPList });
 
-    // obtain an address by geocoder
-    const addrObj = await this.state.ymaps.geocode(coords, { results: 1 });
-    const addr = addrObj.geoObjects.get(0).getAddressLine();
-
-    // insert the address into pList, if this point hadn't delete while geocoder works
-    const newPList2 = this.state.pList.map(pnt => {
-      if (pnt.uniqId === uniqId) {
-        pnt.addr = addr;
-      }
-      return pnt;
-    });
-    this.setState({ pList: newPList2 });
+    // asynchronously get an address and put it into state
+    await this._geocoder(uniqId, coords);
   };
 
   handleDeletePoint = event => {
@@ -60,13 +70,24 @@ class App extends Component {
     this.setState({ pList: newPList });
   };
 
+  // handle pointslist drag-n-drop
   onSortEnd = ({ oldIndex, newIndex }) => {
     let newPList = this.state.pList.slice();
     const removed = newPList.splice(oldIndex, 1);
     newPList.splice(newIndex, 0, removed[0]);
     this.setState({ pList: newPList });
+  };
 
-    //console.log(oldIndex, newIndex, this.state.pList, newPList);
+  // handle Placemark drag-n-drop
+  onDragEnd = async event => {
+    const placeMark = event.originalEvent.target;
+    const i = placeMark.properties.get('ident');
+
+    let newPList = this.state.pList.slice();
+    newPList[i].coords = placeMark.geometry.getCoordinates(); // get new coords
+    this.setState({ pList: newPList });
+    // update the address
+    await this._geocoder(newPList[i].uniqId, newPList[i].coords);
   };
 
   render() {
@@ -78,6 +99,7 @@ class App extends Component {
         returnYmaps={this.returnYmaps}
         handleDeletePoint={this.handleDeletePoint}
         onSortEnd={this.onSortEnd}
+        onDragEnd={this.onDragEnd}
       />
     );
   }

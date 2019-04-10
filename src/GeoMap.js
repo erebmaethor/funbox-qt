@@ -18,13 +18,16 @@ export default function GeoMap(props) {
           data={props.data}
           handleAddPoint={props.handleAddPoint}
           handleDeletePoint={props.handleDeletePoint}
+          onSortStart={(_, event) => event.preventDefault()}
           onSortEnd={props.onSortEnd}
         />
         {props.data.pList.map((pnt, i) => {
           return (
             <Placemark
               geometry={pnt.coords}
-              properties={{ balloonContent: `<span>${pnt.name}</span>` }}
+              properties={{ balloonContent: pnt.name, ident: i }}
+              options={{ draggable: true }}
+              onDragEnd={props.onDragEnd}
               modules={['geoObject.addon.balloon']}
               key={i}
             />
@@ -35,3 +38,4 @@ export default function GeoMap(props) {
     </YMaps>
   );
 }
+// onSortStart is for turn off selection of the text under the moving pressed mouse when drag-n-drop points in list
