@@ -2,6 +2,13 @@
   "name": "funbox-qt",
   "version": "0.1.0",
   "private": true,
+  "description": "This is the solution of a practical part of the qualification test for javascript developer vacancy in FunBox.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erebmaethor/funbox-qt.git"
+  },
+  "author": "Mikhail Smolin",
+  "homepage" : "http://smallmis.herokuapp.com/funbox/",
   "dependencies": {
     "js-sha256": "^0.9.0",
     "react": "^16.8.6",
